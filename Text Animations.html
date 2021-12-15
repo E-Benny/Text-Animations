@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Text Animation</title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Eater&display=swap" rel="stylesheet">
+<style>
+    *,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100vh;
+  font-family: 'Eater', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #3333ff 0%, #9900ff 100%);
+}
+
+.title {
+  position: relative;
+}
+
+.title span {
+  color: white;
+  font-size: 150px;
+  transition: 0.5s;
+  will-change: transform;
+  display: inline-block;
+}
+
+s1 span {
+  transform-origin: bottom;
+}
+
+s2 span {
+  transform-origin: top;
+  transform: translateY(100%) rotateX(-90deg);
+}
+
+.s2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.title:hover .s1 span {
+  transform: translateY(-100%) rotateX(-90deg);
+}
+.title:hover .s2 span {
+  transform: translateY(0%) rotateX(0deg);
+}
+
+@media screen and (max-width: 600px){ 
+  .title span {
+    font-size: 76px;
+    
+  }
+}
+</style>
+<script>
+    const spanContainers = document.querySelectorAll('.title div');
+
+spanContainers.forEach(item => {
+
+    const letters = item.children[0].textContent.split('');
+    item.innerHTML = "";
+
+    letters.forEach((el, index) => {
+        item.innerHTML += `<span style="transition-delay: ${0.07 * index}s">${el}</span>`
+    })
+})
+    </script>
+    </head>
+    <body>
+        <h1 class="title">
+            <div class="span-container s1">
+              <span>E-BENNY</span>
+            </div>
+              <div class="span-container s2">
+                <span>E-BENNY</span>
+              </div>
+            </h1>  
+    </body>
+</html>
